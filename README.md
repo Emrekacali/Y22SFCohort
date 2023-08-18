@@ -1,6 +1,8 @@
 # A NEW Feature is released. Feature #1
 New Feature already released.
 Users are enjoying.
+Releasing new feature shortly. It will be avaialable sooon. Wait for it.
+Learning Git, GitHub and many more things
 
 # Salesforce DX Project: Next Steps
 
