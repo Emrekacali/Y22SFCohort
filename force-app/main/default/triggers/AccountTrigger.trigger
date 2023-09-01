@@ -1,5 +1,18 @@
 trigger AccountTrigger on Account (before insert, after insert, before update, after update, before delete, after delete) {
   
+
+  /* In summary, this code below is using custom metadata to control the execution of triggers related to the 'Account' object in Salesforce. 
+  If the trigger switch is turned off, the code exits early and doesn't proceed with trigger execution. 
+  If the trigger switch is turned on, the code continues executing triggers. 
+  This allows administrators to control the behavior of triggers without modifying the code itself. */
+  TriggerSwitch_mdt accTriggerSwitch = TriggerSwitch_mdt.getInstance('Account');
+  if (!accTriggerSwitch.Enabled__c){
+    system.debug('Account trigger switch is OFF. Go back now.');
+    return;
+  } else {
+    system.debug('Account trigger switch is ON. Please continue');
+  }
+
   if(Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)) {
     //check if annual revenue is less than 5k then throw error
      for (Account accNew : Trigger.new) {

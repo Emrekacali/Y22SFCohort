@@ -45,17 +45,19 @@ public class AccountTriggerHandler{
 }
 */
 
-/* Assignment 8 is below:
+/* Assignment 8 is below: */
 
 public static void createRelatedOpportunity (List<account> accTriggerNew) {
     list <Opportunity> createOpportunities = new list <Opportunity>();
 
+    //to get org default value use getOrgDefaults method of custom settings
+    DefaultOppInfo__c defOpp = DefaultOppInfo__c.getOrgDefaults();
     for (account newAcc : accTriggerNew) {
         Opportunity op = new Opportunity ();
-        op.Name = 'Opportunity1'; 
+        op.Name = defOpp.Opp_Name__c; 
         op.AccountId = newAcc.Id; 
         op.CloseDate = date.today();
-        op.StageName = 'Prospecting';
+        op.StageName = defOpp.StageName__c;
         creteOpportunities.add(op);
     }
     if (!createOpportunities.isEmpty()){
@@ -64,7 +66,7 @@ public static void createRelatedOpportunity (List<account> accTriggerNew) {
  
 
 
-*/
+
  //update all related contact's phone number if account's phone is changed.
    public static void updateRelatedContactPhone(List<account> accTriggerNew, List<account> accTriggerOld,
       Map<id, account> accTriggerNewMap, Map<id, account> accTriggerOldMap) {
